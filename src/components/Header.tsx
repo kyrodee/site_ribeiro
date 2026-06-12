@@ -111,13 +111,17 @@ export default function Header() {
       <div className={`container ${styles.headerContainer}`}>
         <Link href="/" className={styles.logo}>
           <Image
-            src="/logo-horizontal-ui.png"
-            alt="Ribeiro Auto Peças"
-            width={190}
-            height={96}
-            className={styles.logoImage}
+            src="/logo-truck.png"
+            alt=""
+            width={110}
+            height={62}
+            className={styles.logoTruck}
             priority
           />
+          <span className={styles.logoText}>
+            <span className={styles.logoName}>Ribeiro</span>
+            <span className={styles.logoSubtitle}>Auto Peças</span>
+          </span>
         </Link>
 
         <div ref={searchRef} className={styles.searchWrapper}>
