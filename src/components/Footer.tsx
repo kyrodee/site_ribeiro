@@ -20,7 +20,7 @@ export default function Footer() {
             <span className={styles.logoYellow}>AutoPeças</span>
           </Link>
           <p className={styles.companyDesc}>
-            Especialistas em peças para linha pesada, com atendimento consultivo e entrega para Salvador-BA e Região Metropolitana.
+            Especialistas em peças para linha pesada, com atendimento consultivo e entrega para Salvador-BA, Região Metropolitana e Espírito Santo.
           </p>
         </div>
 

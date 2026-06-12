@@ -16,9 +16,9 @@ Abra http://localhost:3000.
 Copie `.env.example` para `.env.local` e ajuste os dados públicos antes de publicar:
 
 ```env
-NEXT_PUBLIC_WHATSAPP_NUMBER=5571999999999
-NEXT_PUBLIC_WHATSAPP_DISPLAY="(71) 99999-9999"
-NEXT_PUBLIC_STORE_EMAIL=vendas@ribeiroautopecas.com.br
+NEXT_PUBLIC_WHATSAPP_NUMBER=5571987929619
+NEXT_PUBLIC_WHATSAPP_DISPLAY="(71) 98792-9619"
+NEXT_PUBLIC_STORE_EMAIL=ribeiroautopecas.financeiro@gmail.com
 NEXT_PUBLIC_STORE_ADDRESS="Salvador, BA"
 ```
 

@@ -21,7 +21,7 @@ const paymentOptions = [
 ];
 
 export default function Carrinho() {
-  const { items, removeItem, updateQuantity, getTotalItems, clearCart, addItem } = useCartStore();
+  const { items, removeItem, updateQuantity, getTotalItems, addItem } = useCartStore();
   const mounted = useSyncExternalStore(() => () => undefined, () => true, () => false);
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
@@ -34,45 +34,7 @@ export default function Carrinho() {
   const [notes, setNotes] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 1. Fetch user authentication and autofill
-  useEffect(() => {
-    if (!mounted) return;
-
-    async function fetchUserData() {
-      try {
-        const meRes = await fetch('/api/auth/me');
-        if (meRes.ok) {
-          const meData = await meRes.json();
-          if (meData.authenticated && meData.user) {
-            setCustomerName(meData.user.nome);
-            if (meData.user.telefone) {
-              setCustomerPhone(meData.user.telefone);
-            }
-
-            // Fetch budgets to autofill the last delivery address
-            const orcamentosRes = await fetch('/api/orcamentos');
-            if (orcamentosRes.ok) {
-              const orcamentos = await orcamentosRes.json();
-              if (orcamentos && orcamentos.length > 0) {
-                const lastDelivery = orcamentos.find((o: any) => o.entregaMetodo === 'entrega');
-                if (lastDelivery) {
-                  if (lastDelivery.cidade) setCity(lastDelivery.cidade);
-                  if (lastDelivery.bairro) setNeighborhood(lastDelivery.bairro);
-                  if (lastDelivery.endereco) setAddress(lastDelivery.endereco);
-                }
-              }
-            }
-          }
-        }
-      } catch (err) {
-        console.error('Erro ao buscar dados do usuário para preenchimento:', err);
-      }
-    }
-
-    fetchUserData();
-  }, [mounted]);
-
-  // 2. Parse shared URL cart parameter
+  // 1. Parse shared URL cart parameter
   useEffect(() => {
     if (!mounted) return;
 
@@ -194,53 +156,11 @@ export default function Carrinho() {
     setIsSubmitting(true);
 
     try {
-      // 1. Prepare data for the API
-      const bodyData = {
-        clienteNome: customerName,
-        clienteTelefone: customerPhone,
-        entregaMetodo: fulfillment,
-        cidade: fulfillment === 'entrega' ? city : null,
-        bairro: fulfillment === 'entrega' ? neighborhood : null,
-        endereco: fulfillment === 'entrega' ? address : null,
-        formaPagamento: paymentMethod,
-        observacoes: notes,
-        itens: items.map(item => ({
-          produto: {
-            id: item.produto.id,
-            nome: item.produto.nome,
-            referencia: item.produto.referencia,
-            codigoInterno: item.produto.codigoInterno,
-            preco: item.produto.preco,
-            estoque: item.produto.estoque,
-            categoria: item.produto.categoria,
-            marca: item.produto.marca,
-            imagemUrl: item.produto.imagemUrl,
-          },
-          quantidade: item.quantidade,
-        })),
-      };
-
-      // 2. Send POST to /api/orcamentos
-      const response = await fetch('/api/orcamentos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bodyData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Erro ao salvar orçamento no banco de dados.');
-      }
-
-      // 3. Open WhatsApp link
       window.open(createWhatsappUrl(buildWhatsappMessage()), '_blank', 'noopener,noreferrer');
-
-      // 4. Clear the cart
-      clearCart();
-      toast.success('Orçamento registrado e enviado ao WhatsApp!');
+      toast.success('Lista aberta no WhatsApp. Combine disponibilidade, envio e pagamento com a equipe.');
     } catch (error: any) {
       console.error(error);
-      toast.error(error.message || 'Falha ao salvar orçamento. Tente novamente.');
+      toast.error(error.message || 'Não foi possível abrir o WhatsApp. Tente novamente.');
     } finally {
       setIsSubmitting(false);
     }
@@ -268,8 +188,8 @@ export default function Carrinho() {
 
       <div className={styles.header}>
         <div>
-          <h1 className="section-title">Fechar Orçamento</h1>
-          <p>Revise os itens e envie tudo formatado para o WhatsApp da loja.</p>
+          <h1 className="section-title">Enviar Lista pelo WhatsApp</h1>
+          <p>Revise as peças, informe entrega ou retirada e mande tudo pronto para a equipe confirmar disponibilidade, envio e pagamento.</p>
         </div>
         <div className={styles.regionBadge}>
           <MapPin size={18} />
@@ -361,7 +281,7 @@ export default function Carrinho() {
               <p>Atendemos entregas para {SERVICE_REGION}.</p>
               <label className={styles.field}>
                 Cidade
-                <input value={city} onChange={(event) => setCity(event.target.value)} required />
+                <input value={city} onChange={(event) => setCity(event.target.value)} required placeholder="Ex: Salvador-BA, Vila Velha-ES..." />
               </label>
               <label className={styles.field}>
                 Bairro
@@ -397,7 +317,7 @@ export default function Carrinho() {
 
           <button type="submit" className={`btn-primary ${styles.checkoutBtn}`} disabled={isSubmitting}>
             <MessageCircle size={22} />
-            {isSubmitting ? 'Salvando orçamento...' : 'Enviar pedido no WhatsApp'}
+            {isSubmitting ? 'Abrindo WhatsApp...' : 'Enviar lista no WhatsApp'}
           </button>
 
           <button type="button" onClick={handleShareCart} className={styles.shareBtn}>
@@ -406,7 +326,7 @@ export default function Carrinho() {
           </button>
 
           <p className={styles.disclaimer}>
-            O valor final, disponibilidade e prazo são confirmados pela equipe antes do fechamento.
+            A disponibilidade, o valor final, o prazo de envio e a forma de pagamento são confirmados pela equipe no WhatsApp.
           </p>
         </aside>
       </form>

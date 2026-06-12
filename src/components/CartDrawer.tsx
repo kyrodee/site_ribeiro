@@ -80,7 +80,7 @@ export default function CartDrawer() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <ShoppingBag size={22} color="var(--primary-blue)" />
             <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-blue)', margin: 0 }}>
-              Seu Orçamento ({totalItems})
+              Sua Lista ({totalItems})
             </h2>
           </div>
           <button
@@ -108,7 +108,7 @@ export default function CartDrawer() {
           {items.length === 0 ? (
             <div style={{ textAlign: 'center', paddingTop: '4rem' }}>
               <ShoppingBag size={48} style={{ color: '#d1d5db', marginBottom: '1rem' }} />
-              <p style={{ color: 'var(--text-muted)', fontSize: '1rem' }}>Sua lista de orçamento está vazia.</p>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1rem' }}>Sua lista de pecas esta vazia.</p>
               <button
                 onClick={() => setDrawerOpen(false)}
                 className="btn-primary"
@@ -273,7 +273,7 @@ export default function CartDrawer() {
               className="btn-primary"
               style={{ width: '100%', padding: '1rem', display: 'flex', justifyContent: 'center', fontSize: '1rem' }}
             >
-              Fechar Orçamento (WhatsApp)
+              Revisar e Enviar no WhatsApp
             </Link>
           </div>
         )}

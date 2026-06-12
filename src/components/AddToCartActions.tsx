@@ -15,7 +15,7 @@ export default function AddToCartActions({ produto }: { produto: ProdutoSqlServe
 
   const handleAddToCart = () => {
     addItem(produto, quantidade);
-    toast.success(`${quantidade}x ${produto.nome} adicionado ao orçamento!`);
+    toast.success(`${quantidade}x ${produto.nome} adicionado a lista!`);
   };
 
   return (
@@ -60,7 +60,7 @@ export default function AddToCartActions({ produto }: { produto: ProdutoSqlServe
           style={{ flex: 1 }}
         >
           <ShoppingCart size={20} />
-          Adicionar ao orçamento
+          Adicionar a lista
         </button>
       </div>
     </div>

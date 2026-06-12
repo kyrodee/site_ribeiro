@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ribeiro Auto Peças | Catálogo de Linha Pesada",
-  description: "Catálogo de peças para caminhões, ônibus e linha pesada com atendimento por WhatsApp em Salvador-BA e Região Metropolitana.",
+  description: "Catálogo de peças para caminhões, ônibus e linha pesada com atendimento por WhatsApp em Salvador-BA, Região Metropolitana e Espírito Santo.",
 };
 
 export default function RootLayout({

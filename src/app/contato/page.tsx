@@ -38,8 +38,8 @@ export default function Contato() {
         <span className={styles.eyebrow}>Atendimento comercial</span>
         <h1>Fale com a Ribeiro Auto Peças</h1>
         <p>
-          Tire dúvidas, confirme compatibilidade e feche pedidos pelo WhatsApp com envio para Salvador-BA
-          e Região Metropolitana.
+          Tire dúvidas, confirme compatibilidade e feche pedidos pelo WhatsApp com envio para Salvador-BA,
+          Região Metropolitana e Espírito Santo.
         </p>
         <a
           href={createWhatsappUrl(`Olá! Vim pelo site da ${STORE_NAME} e gostaria de atendimento.`)}

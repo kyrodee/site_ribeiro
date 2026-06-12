@@ -1,19 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Menu, Phone, Search, ShoppingCart, X, User } from 'lucide-react';
+import { Menu, Phone, Search, ShoppingCart, X } from 'lucide-react';
 import styles from './Header.module.css';
 import { useCartStore } from '@/store/useCartStore';
 import type { ProdutoSqlServer } from '@/lib/db-sqlserver';
 import { createWhatsappUrl } from '@/lib/site-config';
-
-interface UserSession {
-  nome: string;
-  email: string;
-  role: string;
-}
 
 export default function Header() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,35 +15,11 @@ export default function Header() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState<UserSession | null>(null);
   
   const router = useRouter();
-  const pathname = usePathname();
   const searchRef = useRef<HTMLDivElement>(null);
-  const getTotalItems = useCartStore(state => state.getTotalItems());
+  const totalItems = useCartStore(state => state.getTotalItems());
   const setDrawerOpen = useCartStore(state => state.setDrawerOpen);
-
-  useEffect(() => {
-    async function checkUser() {
-      try {
-        const response = await fetch('/api/auth/me');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.authenticated) {
-            setUser(data.user);
-          } else {
-            setUser(null);
-          }
-        } else {
-          setUser(null);
-        }
-      } catch (err) {
-        console.error('Erro ao checar auth:', err);
-        setUser(null);
-      }
-    }
-    checkUser();
-  }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -135,19 +105,6 @@ export default function Header() {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch('/api/auth/logout', { method: 'POST' });
-      if (response.ok) {
-        setUser(null);
-        router.refresh();
-        router.push('/');
-      }
-    } catch (err) {
-      console.error('Erro ao deslogar:', err);
-    }
-  };
-
   return (
     <header className={styles.header}>
       <div className={`container ${styles.headerContainer}`}>
@@ -193,26 +150,15 @@ export default function Header() {
         </div>
 
         <div className={styles.actions}>
-          {user ? (
-            <Link href="/perfil" className={styles.actionItem} title="Minha Conta">
-              <User size={24} />
-              <span className={styles.profileNameText}>Olá, {user.nome.split(' ')[0]}</span>
-            </Link>
-          ) : (
-            <Link href="/login" className={styles.actionItem} title="Entrar / Cadastrar">
-              <User size={24} />
-              <span className={styles.profileNameText}>Entrar</span>
-            </Link>
-          )}
-
           <button
             onClick={() => setDrawerOpen(true)}
             className={styles.actionItem}
-            aria-label="Orçamento"
+            aria-label="Abrir lista de peças"
             style={{ background: 'none', border: 'none', cursor: 'pointer' }}
           >
             <ShoppingCart size={24} />
-            <span className={styles.cartBadge}>{getTotalItems}</span>
+            <span className={styles.profileNameText}>Lista</span>
+            <span className={styles.cartBadge}>{totalItems}</span>
           </button>
 
           <a
@@ -244,24 +190,6 @@ export default function Header() {
             <Link href="/produtos?cat=Freios" onClick={() => setIsMobileMenuOpen(false)}>Freios</Link>
             <Link href="/produtos?cat=Cabine" onClick={() => setIsMobileMenuOpen(false)}>Cabine</Link>
             <Link href="/produtos?cat=Eletrica%2FSensores" onClick={() => setIsMobileMenuOpen(false)}>Elétrica/Sensores</Link>
-            
-            {user ? (
-              <>
-                <Link href="/perfil" onClick={() => setIsMobileMenuOpen(false)} className={styles.mobileOnlyLink}>Minha Conta</Link>
-                {user.role === 'ADMIN' && (
-                  <Link href="/admin" onClick={() => setIsMobileMenuOpen(false)} className={styles.mobileOnlyLink}>Painel Administrativo</Link>
-                )}
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className={`${styles.mobileOnlyLink} ${styles.mobileLogoutBtn}`}
-                >
-                  Sair da Conta
-                </button>
-              </>
-            ) : (
-              <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className={styles.mobileOnlyLink}>Entrar / Cadastrar</Link>
-            )}
           </div>
         </div>
       </nav>
