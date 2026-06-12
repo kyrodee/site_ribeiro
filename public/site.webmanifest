@@ -1,0 +1,23 @@
+{
+  "name": "Ribeiro Auto Peças",
+  "short_name": "Ribeiro Peças",
+  "description": "Catálogo de peças para caminhões, ônibus e linha pesada com atendimento pelo WhatsApp.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b2545",
+  "theme_color": "#0b2545",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

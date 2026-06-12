@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getProdutosSqlServer } from '@/lib/db-sqlserver';
 import {
@@ -9,6 +10,21 @@ import {
 } from '@/lib/product-search';
 import { ArrowDownAZ, Filter, Search } from 'lucide-react';
 import styles from './page.module.css';
+import { SITE_URL, STORE_NAME } from '@/lib/site-config';
+
+export const metadata: Metadata = {
+  title: 'Catálogo de Peças para Linha Pesada',
+  description: 'Consulte peças para caminhões e ônibus por nome, código, referência, NCM, categoria ou marca. Monte sua lista e finalize pelo WhatsApp.',
+  alternates: {
+    canonical: `${SITE_URL}/produtos`,
+  },
+  openGraph: {
+    title: `Catálogo de Peças | ${STORE_NAME}`,
+    description: 'Mais de 11.000 itens de linha pesada catalogados para consulta rápida.',
+    url: `${SITE_URL}/produtos`,
+    images: ['/og-image.svg'],
+  },
+};
 
 export default async function ProdutosList({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const todosProdutos = await getProdutosSqlServer(20000);

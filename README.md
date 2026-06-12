@@ -20,6 +20,7 @@ NEXT_PUBLIC_WHATSAPP_NUMBER=5571987929619
 NEXT_PUBLIC_WHATSAPP_DISPLAY="(71) 98792-9619"
 NEXT_PUBLIC_STORE_EMAIL=ribeiroautopecas.financeiro@gmail.com
 NEXT_PUBLIC_STORE_ADDRESS="Salvador, BA"
+NEXT_PUBLIC_SITE_URL=https://ribeiroautopecasba.com.br
 ```
 
 `NEXT_PUBLIC_WHATSAPP_NUMBER` deve ficar só com DDI, DDD e número, sem espaços. O carrinho monta a mensagem do pedido com nome, forma de pagamento, entrega ou retirada, endereço e itens selecionados.

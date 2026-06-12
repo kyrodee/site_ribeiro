@@ -4,8 +4,8 @@ import styles from './Footer.module.css';
 import {
   BUSINESS_HOURS,
   SERVICE_REGION,
-  STORE_ADDRESS,
   STORE_EMAIL,
+  STORE_LOCATIONS,
   WHATSAPP_DISPLAY,
   createWhatsappUrl,
 } from '@/lib/site-config';
@@ -49,7 +49,17 @@ export default function Footer() {
           <ul className={styles.contactList}>
             <li>
               <MapPin size={18} />
-              <span>{STORE_ADDRESS}<br />Entregas em {SERVICE_REGION}</span>
+              <div className={styles.locationsList}>
+                {STORE_LOCATIONS.map((location) => (
+                  <address key={location.label} className={styles.locationCard}>
+                    <strong>{location.label}</strong>
+                    <span>{location.address}</span>
+                    <span>{location.district}</span>
+                    <span>{location.postalCode}</span>
+                  </address>
+                ))}
+                <span className={styles.deliveryText}>Entregas em {SERVICE_REGION}</span>
+              </div>
             </li>
             <li>
               <Phone size={18} />

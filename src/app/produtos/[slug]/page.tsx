@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ChevronLeft, ShieldCheck, Truck } from 'lucide-react';
@@ -6,7 +7,47 @@ import styles from './page.module.css';
 import { getProdutosSqlServer } from '@/lib/db-sqlserver';
 import AddToCartActions from '@/components/AddToCartActions';
 import ProductTabs from '@/components/ProductTabs';
-import { SERVICE_REGION } from '@/lib/site-config';
+import { SERVICE_REGION, SITE_URL, STORE_NAME } from '@/lib/site-config';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const produtos = await getProdutosSqlServer(20000);
+  const resolvedParams = await params;
+  const produto = produtos.find(p => p.id === resolvedParams.slug);
+
+  if (!produto) {
+    return {
+      title: 'Peça não encontrada',
+      robots: { index: false, follow: true },
+    };
+  }
+
+  const title = `${produto.nome} ${produto.marca ? `| ${produto.marca}` : ''}`;
+  const description = `Consulte ${produto.nome}. Código ${produto.codigoInterno}, referência ${produto.referencia}${produto.ncm ? `, NCM ${produto.ncm}` : ''}. Atendimento pelo WhatsApp.`;
+  const url = `${SITE_URL}/produtos/${encodeURIComponent(produto.id)}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: 'website',
+      title: `${title} | ${STORE_NAME}`,
+      description,
+      url,
+      images: produto.imagemUrl
+        ? [{ url: produto.imagemUrl, alt: produto.nome }]
+        : [{ url: '/og-image.svg', width: 1200, height: 630, alt: `${STORE_NAME} - ${produto.nome}` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: produto.imagemUrl ? [produto.imagemUrl] : ['/og-image.svg'],
+    },
+  };
+}
 
 export default async function ProdutoDetalhes({ params }: { params: Promise<{ slug: string }> }) {
   const produtos = await getProdutosSqlServer(20000);
@@ -24,7 +65,7 @@ export default async function ProdutoDetalhes({ params }: { params: Promise<{ sl
     '@context': 'https://schema.org/',
     '@type': 'Product',
     name: produto.nome,
-    image: produto.imagemUrl || 'https://www.ribeiroautopecas.com.br/placeholder.png',
+    image: produto.imagemUrl || `${SITE_URL}/og-image.svg`,
     description: `Peça para linha pesada. Ref: ${produto.referencia}`,
     sku: produto.codigoInterno,
     brand: {
