@@ -16,24 +16,42 @@
 .logo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 230px;
-  height: 142px;
+  justify-content: flex-start;
+  gap: 0.7rem;
+  width: fit-content;
+  min-height: 70px;
   margin-bottom: 1.5rem;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
 }
 
-.logoImage {
-  width: 100%;
-  height: 100%;
-  padding: 0.6rem;
+.logoTruck {
+  width: 88px;
+  height: 52px;
   object-fit: contain;
   object-position: center;
   display: block;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.45));
+  flex: 0 0 auto;
+}
+
+.logoText {
+  display: grid;
+  gap: 0.12rem;
+  line-height: 1;
+}
+
+.logoName {
+  color: var(--surface-white);
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.logoSubtitle {
+  color: var(--accent-yellow);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .companyDesc {
@@ -177,7 +195,20 @@
   }
 
   .logo {
-    width: 210px;
-    height: 130px;
+    min-height: 58px;
+  }
+
+  .logoTruck {
+    width: 74px;
+    height: 44px;
+  }
+
+  .logoName {
+    font-size: 1.45rem;
+  }
+
+  .logoSubtitle {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
   }
 }

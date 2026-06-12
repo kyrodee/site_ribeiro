@@ -96,7 +96,7 @@ const businessStructuredData = {
   "@type": "AutoPartsStore",
   name: STORE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/logo-truck.png`,
   image: `${SITE_URL}/og-image.svg`,
   email: STORE_EMAIL,
   telephone: `+${WHATSAPP_NUMBER}`,

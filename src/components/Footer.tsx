@@ -18,12 +18,16 @@ export default function Footer() {
         <div className={styles.footerColumn}>
           <Link href="/" className={styles.logo}>
             <Image
-              src="/logo-full-ui.png"
-              alt="Ribeiro Auto Peças"
-              width={230}
-              height={130}
-              className={styles.logoImage}
+              src="/logo-truck.png"
+              alt=""
+              width={130}
+              height={78}
+              className={styles.logoTruck}
             />
+            <span className={styles.logoText}>
+              <span className={styles.logoName}>Ribeiro</span>
+              <span className={styles.logoSubtitle}>Auto Peças</span>
+            </span>
           </Link>
           <p className={styles.companyDesc}>
             Especialistas em peças para linha pesada, com atendimento consultivo e entrega para Salvador-BA, Região Metropolitana e Espírito Santo.
