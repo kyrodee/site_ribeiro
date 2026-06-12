@@ -1,0 +1,65 @@
+.heroSearchForm {
+  margin-top: 2rem;
+  max-width: 700px;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--surface-white);
+  border-radius: 999px;
+  padding: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+}
+
+.searchWrapper:focus-within {
+  border-color: var(--accent-yellow);
+  box-shadow: 0 10px 25px -5px rgba(255, 192, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.searchIcon {
+  color: var(--text-muted);
+  margin-left: 1rem;
+}
+
+.heroSearchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 1rem;
+  font-size: 1.125rem;
+  color: var(--text-dark);
+  outline: none;
+}
+
+.heroSearchBtn {
+  border-radius: 999px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .searchWrapper {
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .searchIcon {
+    display: none;
+  }
+  
+  .heroSearchInput {
+    width: 100%;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  .heroSearchBtn {
+    width: 100%;
+  }
+}

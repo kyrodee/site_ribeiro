@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ProdutoEnriquecido {
+  idOriginal        String   @id // Código interno ou referência única vinda do SQL Server
+  imagemUrl         String?
+  descricao         String?
+  slug              String   @unique
+  destaque          Boolean  @default(false)
+  visivel           Boolean  @default(true)
+  categoriaAjustada String?
+  dataAtualizacao   DateTime @updatedAt
+}
+
+model Usuario {
+  id          String      @id @default(uuid())
+  email       String      @unique
+  senha       String
+  nome        String
+  telefone    String?
+  role        String      @default("USER")
+  dataCriacao DateTime    @default(now())
+  orcamentos  Orcamento[]
+}
+
+model Orcamento {
+  id              String   @id @default(uuid())
+  usuarioId       String?
+  usuario         Usuario? @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  clienteNome     String
+  clienteTelefone String?
+  entregaMetodo   String
+  cidade          String?
+  bairro          String?
+  endereco        String?
+  formaPagamento  String
+  observacoes     String?
+  itensJson       String
+  status          String   @default("PENDENTE")
+  dataCriacao     DateTime @default(now())
+}
