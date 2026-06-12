@@ -18,7 +18,7 @@ export default function Footer() {
         <div className={styles.footerColumn}>
           <Link href="/" className={styles.logo}>
             <Image
-              src="/logo.png"
+              src="/logo-full-ui.png"
               alt="Ribeiro Auto Peças"
               width={230}
               height={130}

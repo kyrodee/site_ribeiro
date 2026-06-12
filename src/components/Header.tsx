@@ -111,7 +111,7 @@ export default function Header() {
       <div className={`container ${styles.headerContainer}`}>
         <Link href="/" className={styles.logo}>
           <Image
-            src="/logo.png"
+            src="/logo-horizontal-ui.png"
             alt="Ribeiro Auto Peças"
             width={190}
             height={96}
