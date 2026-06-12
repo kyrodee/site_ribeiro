@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import styles from './Footer.module.css';
 import {
@@ -16,8 +17,13 @@ export default function Footer() {
       <div className={`container ${styles.footerGrid}`}>
         <div className={styles.footerColumn}>
           <Link href="/" className={styles.logo}>
-            <span className={styles.logoBlue}>Ribeiro</span>
-            <span className={styles.logoYellow}>AutoPeças</span>
+            <Image
+              src="/logo.png"
+              alt="Ribeiro Auto Peças"
+              width={230}
+              height={130}
+              className={styles.logoImage}
+            />
           </Link>
           <p className={styles.companyDesc}>
             Especialistas em peças para linha pesada, com atendimento consultivo e entrega para Salvador-BA, Região Metropolitana e Espírito Santo.

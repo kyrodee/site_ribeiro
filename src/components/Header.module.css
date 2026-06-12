@@ -21,13 +21,15 @@
 }
 
 .logo {
-  font-size: 1.6rem;
-  font-weight: 900;
   display: flex;
-  flex-direction: column;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 64px;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
   transition: var(--transition-bounce);
 }
 
@@ -35,14 +37,12 @@
   transform: scale(1.03);
 }
 
-.logoBlue {
-  color: var(--surface-white);
-}
-
-.logoYellow {
-  color: var(--accent-yellow);
-  font-size: 1.3rem;
-  font-weight: 800;
+.logoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+  display: block;
 }
 
 .searchWrapper {
@@ -311,6 +311,11 @@
     gap: 1rem;
     padding-bottom: 0.65rem;
   }
+
+  .logo {
+    width: 142px;
+    height: 54px;
+  }
   
   .searchWrapper {
     order: 3;
@@ -349,4 +354,3 @@
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 }
-

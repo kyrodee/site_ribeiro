@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, Phone, Search, ShoppingCart, X } from 'lucide-react';
 import styles from './Header.module.css';
 import { useCartStore } from '@/store/useCartStore';
@@ -109,8 +110,14 @@ export default function Header() {
     <header className={styles.header}>
       <div className={`container ${styles.headerContainer}`}>
         <Link href="/" className={styles.logo}>
-          <span className={styles.logoBlue}>Ribeiro</span>
-          <span className={styles.logoYellow}>AutoPeças</span>
+          <Image
+            src="/logo.png"
+            alt="Ribeiro Auto Peças"
+            width={190}
+            height={96}
+            className={styles.logoImage}
+            priority
+          />
         </Link>
 
         <div ref={searchRef} className={styles.searchWrapper}>
