@@ -4,7 +4,7 @@ export const STORE_NAME = 'Ribeiro Auto Peças';
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ribeiroautopecasba.com.br';
 
-export const SERVICE_REGION = 'Salvador-BA, Região Metropolitana e Espírito Santo';
+export const SERVICE_REGION = 'todo o Brasil';
 
 export const WHATSAPP_DISPLAY = process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || '(71) 98792-9619';
 

@@ -11,7 +11,7 @@ export default function AddToCartActions({ produto }: { produto: ProdutoSqlServe
   const [quantidade, setQuantidade] = useState(1);
   const addItem = useCartStore(state => state.addItem);
 
-  const mensagemWhatsapp = `Olá! Vim pelo site da ${STORE_NAME} e gostaria de atendimento sobre este produto.\n\nProduto: ${produto.nome}\nQuantidade desejada: ${quantidade} ${produto.unidade || 'UN'}\nCódigo: ${produto.codigoInterno}\nReferência: ${produto.referencia}\nMarca: ${produto.marca || 'Não informada'}\n\nPode confirmar disponibilidade, aplicação, valor final e forma de entrega?`;
+  const mensagemWhatsapp = `Olá! Vim pelo site da ${STORE_NAME} e gostaria de atendimento sobre este produto.\n\nProduto: ${produto.nome}\nQuantidade desejada: ${quantidade} ${produto.unidade || 'UN'}\nCódigo: ${produto.codigoInterno}\nReferência: ${produto.referencia}\nMarca: ${produto.marca || 'Não informada'}\n\nPode confirmar disponibilidade, aplicação, valor final e forma de envio?`;
 
   const handleAddToCart = () => {
     addItem(produto, quantidade);

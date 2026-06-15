@@ -4,8 +4,8 @@ import styles from './page.module.css';
 export default function FAQ() {
   const faqs = [
     {
-      q: "Vocês entregam em quais regiões?",
-      a: `Atendemos entregas em ${SERVICE_REGION}. Prazo, disponibilidade e taxa são confirmados pelo WhatsApp antes do fechamento.`
+      q: "Vocês enviam para quais regiões?",
+      a: `Enviamos para ${SERVICE_REGION}. Prazo, disponibilidade e frete são confirmados pelo WhatsApp antes do fechamento.`
     },
     {
       q: "As peças têm garantia?",
@@ -30,7 +30,7 @@ export default function FAQ() {
       <section className={styles.hero}>
         <h1>Perguntas Frequentes (FAQ)</h1>
         <p className={styles.heroSubtitle}>
-          Encontre respostas rápidas sobre nossos produtos, entregas e formas de pagamento.
+          Encontre respostas rápidas sobre nossos produtos, envio e formas de pagamento.
         </p>
       </section>
 

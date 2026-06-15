@@ -25,8 +25,8 @@ export default async function Home() {
         <div className={`container ${styles.benefitsGrid}`}>
           <div className={styles.benefitItem}>
             <div className={styles.benefitIcon}><Truck size={32} /></div>
-            <h3>Entrega Rápida</h3>
-            <p>Entregas para {SERVICE_REGION}</p>
+            <h3>Envio Nacional</h3>
+            <p>Envio para {SERVICE_REGION}</p>
           </div>
           <div className={styles.benefitItem}>
             <div className={styles.benefitIcon}><ShieldCheck size={32} /></div>

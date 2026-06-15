@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     default: `${STORE_NAME} | Peças para Caminhões e Linha Pesada`,
     template: `%s | ${STORE_NAME}`,
   },
-  description: `Catálogo de peças para caminhões, ônibus e linha pesada com consulta por código, referência e marca. Atendimento por WhatsApp em ${SERVICE_REGION}.`,
+  description: `Catálogo de peças para caminhões, ônibus e linha pesada com consulta por código, referência e marca. Envio para ${SERVICE_REGION} com atendimento pelo WhatsApp.`,
   applicationName: STORE_NAME,
   keywords: [
     "auto peças",
@@ -34,6 +34,8 @@ export const metadata: Metadata = {
     "auto peças Salvador",
     "peças caminhão Bahia",
     "peças caminhão Espírito Santo",
+    "peças caminhão Brasil",
+    "envio de peças para todo Brasil",
     "catálogo de peças",
     "peças Volvo",
     "peças Scania",
@@ -107,9 +109,7 @@ const businessStructuredData = {
     addressCountry: "BR",
   },
   areaServed: [
-    "Salvador-BA",
-    "Região Metropolitana de Salvador",
-    "Espírito Santo",
+    "Brasil",
   ],
   contactPoint: {
     "@type": "ContactPoint",

@@ -145,8 +145,8 @@ export default async function ProdutoDetalhes({ params }: { params: Promise<{ sl
             <div className={styles.trustItem}>
               <Truck size={24} color="var(--primary-blue)" />
               <div>
-                <strong>Entrega rápida</strong>
-                <p>Entregamos em {SERVICE_REGION}</p>
+                <strong>Envio nacional</strong>
+                <p>Enviamos para {SERVICE_REGION}</p>
               </div>
             </div>
             <div className={styles.trustItem}>

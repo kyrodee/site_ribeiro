@@ -15,7 +15,7 @@ type Intent = 'fechar' | 'duvida';
 const paymentOptions = [
   'PIX',
   'Cartão de crédito/débito',
-  'Dinheiro na retirada/entrega',
+  'Dinheiro na retirada/recebimento',
   'Boleto ou transferência',
   'A combinar',
 ];
@@ -28,7 +28,7 @@ export default function Carrinho() {
   const [intent, setIntent] = useState<Intent>('fechar');
   const [fulfillment, setFulfillment] = useState<Fulfillment>('entrega');
   const [paymentMethod, setPaymentMethod] = useState(paymentOptions[0]);
-  const [city, setCity] = useState('Salvador-BA');
+  const [city, setCity] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
@@ -111,7 +111,7 @@ export default function Carrinho() {
       'DADOS DO CLIENTE',
       `Nome: ${customerName.trim()}`,
       `Telefone para contato: ${customerPhone.trim() || 'Não informado'}`,
-      `Atendimento: ${fulfillment === 'entrega' ? `Entrega em ${SERVICE_REGION}` : 'Retirada na loja'}`,
+      `Atendimento: ${fulfillment === 'entrega' ? `Envio para ${SERVICE_REGION}` : 'Retirada na loja'}`,
       `Forma de pagamento: ${paymentMethod}`,
     ];
 
@@ -189,11 +189,11 @@ export default function Carrinho() {
       <div className={styles.header}>
         <div>
           <h1 className="section-title">Enviar Lista pelo WhatsApp</h1>
-          <p>Revise as peças, informe entrega ou retirada e mande tudo pronto para a equipe confirmar disponibilidade, envio e pagamento.</p>
+          <p>Revise as peças, informe envio ou retirada e mande tudo pronto para a equipe confirmar disponibilidade, frete e pagamento.</p>
         </div>
         <div className={styles.regionBadge}>
           <MapPin size={18} />
-          Entregas em {SERVICE_REGION}
+          Envio para {SERVICE_REGION}
         </div>
       </div>
 
@@ -268,7 +268,7 @@ export default function Carrinho() {
           <div className={styles.segmented}>
             <label>
               <input type="radio" name="fulfillment" value="entrega" checked={fulfillment === 'entrega'} onChange={() => setFulfillment('entrega')} />
-              Entrega
+              Envio
             </label>
             <label>
               <input type="radio" name="fulfillment" value="retirada" checked={fulfillment === 'retirada'} onChange={() => setFulfillment('retirada')} />
@@ -278,10 +278,10 @@ export default function Carrinho() {
 
           {fulfillment === 'entrega' && (
             <div className={styles.deliveryBox}>
-              <p>Atendemos entregas para {SERVICE_REGION}.</p>
+              <p>Enviamos para {SERVICE_REGION}. Frete, prazo e transportadora são confirmados pelo WhatsApp.</p>
               <label className={styles.field}>
                 Cidade
-                <input value={city} onChange={(event) => setCity(event.target.value)} required placeholder="Ex: Salvador-BA, Vila Velha-ES..." />
+                <input value={city} onChange={(event) => setCity(event.target.value)} required placeholder="Ex: Salvador-BA, Vila Velha-ES, São Paulo-SP..." />
               </label>
               <label className={styles.field}>
                 Bairro
@@ -305,7 +305,7 @@ export default function Carrinho() {
 
           <label className={styles.field}>
             Observações
-            <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Chassi, urgência, dúvidas, horário para entrega..." rows={4} />
+            <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Chassi, urgência, dúvidas, transportadora, horário para receber..." rows={4} />
           </label>
 
           <div className={styles.summaryBox}>

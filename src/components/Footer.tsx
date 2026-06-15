@@ -30,7 +30,7 @@ export default function Footer() {
             </span>
           </Link>
           <p className={styles.companyDesc}>
-            Especialistas em peças para linha pesada, com atendimento consultivo e entrega para Salvador-BA, Região Metropolitana e Espírito Santo.
+            Especialistas em peças para linha pesada, com atendimento consultivo e envio para todo o Brasil.
           </p>
         </div>
 
@@ -68,7 +68,7 @@ export default function Footer() {
                     <span>{location.postalCode}</span>
                   </address>
                 ))}
-                <span className={styles.deliveryText}>Entregas em {SERVICE_REGION}</span>
+                <span className={styles.deliveryText}>Envio para {SERVICE_REGION}</span>
               </div>
             </li>
             <li>

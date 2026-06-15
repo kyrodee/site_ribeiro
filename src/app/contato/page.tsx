@@ -19,9 +19,9 @@ const quickActions = [
   },
   {
     icon: Truck,
-    title: 'Consultar entrega',
-    text: `Atendimento para ${SERVICE_REGION}, com prazo e taxa confirmados pelo WhatsApp.`,
-    message: `Olá! Vim pelo site da ${STORE_NAME} e quero consultar entrega para minha região.`,
+    title: 'Consultar frete',
+    text: `Envio para ${SERVICE_REGION}, com prazo e frete confirmados pelo WhatsApp.`,
+    message: `Olá! Vim pelo site da ${STORE_NAME} e quero consultar frete para minha região.`,
   },
   {
     icon: MessageCircle,
@@ -38,8 +38,7 @@ export default function Contato() {
         <span className={styles.eyebrow}>Atendimento comercial</span>
         <h1>Fale com a Ribeiro Auto Peças</h1>
         <p>
-          Tire dúvidas, confirme compatibilidade e feche pedidos pelo WhatsApp com envio para Salvador-BA,
-          Região Metropolitana e Espírito Santo.
+          Tire dúvidas, confirme compatibilidade e feche pedidos pelo WhatsApp com envio para todo o Brasil.
         </p>
         <a
           href={createWhatsappUrl(`Olá! Vim pelo site da ${STORE_NAME} e gostaria de atendimento.`)}
@@ -74,7 +73,7 @@ export default function Contato() {
               <MapPin size={22} />
               <div>
                 <strong>Região atendida</strong>
-                <span>{STORE_ADDRESS} - entregas em {SERVICE_REGION}</span>
+                <span>{STORE_ADDRESS} - envio para {SERVICE_REGION}</span>
               </div>
             </li>
             <li>
